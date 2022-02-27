@@ -62,7 +62,7 @@ p6df::modules::go::langs() {
   goenv uninstall -f $previous
 
   # get the shiny one
-  local latest=$(goenv install -l | tail -1 | sed -e 's, *,,g')
+  local latest=$(goenv install -l | grep -v 1.18 | tail -1 | sed -e 's, *,,g')
   goenv install $latest
   goenv global $latest
   goenv rehash
