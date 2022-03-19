@@ -7,7 +7,7 @@
 ######################################################################
 p6df::modules::go::deps() {
   ModuleDeps=(
-    p6m7g8/p6common
+    p6m7g8-dotfiles/p6common
     syndbg/goenv
   )
 }
@@ -37,8 +37,7 @@ p6df::modules::go::vscodes() {
 p6df::modules::go::home::symlink() {
 
   if [ -n "$GOPATH" ]; then
-    echo ln -fs $P6_DFZ_SRC_DIR $GOPATH/src
-    #    ln -fs $P6_DFZ_SRC_DIR $GOPATH/src
+    ln -fs $P6_DFZ_SRC_DIR $GOPATH/src
   fi
 }
 
