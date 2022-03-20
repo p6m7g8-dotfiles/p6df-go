@@ -36,8 +36,8 @@ p6df::modules::go::vscodes() {
 ######################################################################
 p6df::modules::go::home::symlink() {
 
-  if [ -n "$GOPATH" ]; then
-    ln -fs $P6_DFZ_SRC_DIR $GOPATH/src
+  if ! p6_string_blank "$GOPATH"; then
+    p6_file_symlink "$P6_DFZ_SRC_DIR" "$GOPATH/src"
   fi
 }
 
