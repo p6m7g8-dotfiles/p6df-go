@@ -44,16 +44,14 @@
 
 #### p6df-go/init.zsh:
 
-- p6_go_prompt_info()
 - p6df::modules::go::deps()
 - p6df::modules::go::goenv::init(dir)
-- p6df::modules::go::goenv::prompt::line()
 - p6df::modules::go::home::symlink()
 - p6df::modules::go::init()
 - p6df::modules::go::langs()
-- p6df::modules::go::prompt::line()
+- p6df::modules::go::prompt::init()
 - p6df::modules::go::vscodes()
-- str str = p6_go_path_prompt_info()
+- str str = p6_go_env_prompt_info()
 
 
 

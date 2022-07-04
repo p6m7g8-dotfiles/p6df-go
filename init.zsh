@@ -31,6 +31,7 @@ p6df::modules::go::vscodes() {
 #
 # Function: p6df::modules::go::home::symlink()
 #
+#  Depends:	 p6_file p6_string
 #  Environment:	 GOPATH P6_DFZ_SRC_DIR
 #>
 ######################################################################
@@ -116,6 +117,22 @@ p6df::modules::go::langs() {
 p6df::modules::go::init() {
 
   p6df::modules::go::goenv::init "$P6_DFZ_SRC_DIR"
+
+  p6df::modules::go::prompt::init
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::go::prompt::init()
+#
+#>
+######################################################################
+p6df::modules::go::prompt::init() {
+
+  p6df::core::prompt::line::add "p6_lang_prompt_info"
+  p6df::core::prompt::line::add "p6_lang_envs_prompt_info"
+  p6df::core::prompt::lang::line::add go
 }
 
 ######################################################################
@@ -126,6 +143,7 @@ p6df::modules::go::init() {
 #  Args:
 #	dir -
 #
+#  Depends:	 p6_string
 #  Environment:	 DISABLE_ENVS GOENV_ROOT GOPATH HAS_GOENV
 #>
 ######################################################################
@@ -149,32 +167,7 @@ p6df::modules::go::goenv::init() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::go::goenv::prompt::line()
-#
-#>
-######################################################################
-p6df::modules::go::goenv::prompt::line() {
-
-  p6_go_path_prompt_info
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::go::prompt::line()
-#
-#>
-######################################################################
-p6df::modules::go::prompt::line() {
-
-  p6_go_prompt_info
-  p6_go_path_prompt_info
-}
-
-######################################################################
-#<
-#
-# Function: str str = p6_go_path_prompt_info()
+# Function: str str = p6_go_env_prompt_info()
 #
 #  Returns:
 #	str - str
@@ -183,28 +176,13 @@ p6df::modules::go::prompt::line() {
 #  Environment:	 GOPATH GOROOT
 #>
 ######################################################################
-p6_go_path_prompt_info() {
+p6_go_env_prompt_info() {
 
-  local str="goenv:\t  gopath=
-goenv:\t  gotroot="
+  local str
   if ! p6_string_blank "$GOPATH"; then
-    str="goenv:\t  gopath:$GOPATH
-goenv:\t  goroot:$GOROOT"
+    str="gopath=$GOPATH
+goroot=$GOROOT"
   fi
 
   p6_return_str "$str"
-}
-
-######################################################################
-#<
-#
-# Function: p6_go_prompt_info()
-#
-#  Depends:	 p6_lang
-#>
-######################################################################
-p6_go_prompt_info() {
-
-  echo -n "go:\t  "
-  p6_lang_version "go"
 }
