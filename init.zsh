@@ -158,9 +158,9 @@ p6df::modules::go::goenv::init() {
     export GOENV_ROOT
     export HAS_GOENV=1
 
-    p6df::util::path_if $GOENV_ROOT/bin
+    p6_path_if $GOENV_ROOT/bin
     eval "$(p6_run_code goenv init - zsh)"
-    p6df::util::path_if $GOPATH/bin
+    p6_path_if $GOPATH/bin
   fi
 }
 
