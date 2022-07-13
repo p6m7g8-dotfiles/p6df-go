@@ -53,8 +53,8 @@ p6df::modules::go::home::symlink() {
 p6df::modules::go::langs() {
 
   (
-    cd $P6_DFZ_SRC_DIR/syndbg/goenv
-    git pull
+    p6_dir_cd $P6_DFZ_SRC_DIR/syndbg/goenv
+    p6_git_p6_pull
   )
 
   # nuke the old one
@@ -100,7 +100,7 @@ p6df::modules::go::langs() {
   go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
   goenv rehash
   (
-    cd $P6_DFZ_SRC_DIR/github.com/golangci/golangci-lint/cmd/golangci-lint
+    p6_dir_cd $P6_DFZ_SRC_DIR/github.com/golangci/golangci-lint/cmd/golangci-lint
     go install -ldflags "-X 'main.version=$(git describe --tags)' -X 'main.commit=$(git rev-parse --short HEAD)' -X 'main.date=$(date)'"
   )
   goenv rehash
@@ -180,8 +180,8 @@ p6_go_env_prompt_info() {
 
   local str
   if ! p6_string_blank "$GOPATH"; then
-    str="gopath=$GOPATH
-goroot=$GOROOT"
+    str="gopath:\t  $GOPATH
+goroot:\t  $GOROOT"
   fi
 
   p6_return_str "$str"
