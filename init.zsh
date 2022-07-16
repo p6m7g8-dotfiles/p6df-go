@@ -180,8 +180,8 @@ p6_go_env_prompt_info() {
 
   local str
   if ! p6_string_blank "$GOPATH"; then
-    str="gopath:\t  $GOPATH
-goroot:\t  $GOROOT"
+    str="gopath:\t\t  $GOPATH
+goroot:\t\t  $GOROOT"
   fi
 
   p6_return_str "$str"
