@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 ######################################################################
 #<
 #
@@ -24,6 +25,8 @@ p6df::modules::go::vscodes() {
   # go
   go get golang.org/x/tools/gopls
   code --install-extension golang.go
+
+  p6_return_void
 }
 
 ######################################################################
@@ -39,6 +42,8 @@ p6df::modules::go::home::symlink() {
   if ! p6_string_blank "$GOPATH"; then
     p6_file_symlink "$P6_DFZ_SRC_DIR" "$GOPATH/src"
   fi
+
+  p6_return_void
 }
 
 ######################################################################
@@ -46,7 +51,7 @@ p6df::modules::go::home::symlink() {
 #
 # Function: p6df::modules::go::langs()
 #
-#  Environment:	 HEAD P6_DFZ_SRC_DIR
+#  Environment:	 P6_DFZ_SRC_DIR
 #>
 ######################################################################
 p6df::modules::go::langs() {
@@ -62,6 +67,8 @@ p6df::modules::go::langs() {
   goenv install $latest
   goenv global $latest
   goenv rehash
+
+  p6_return_void
 }
 
 ######################################################################
@@ -77,6 +84,35 @@ p6df::modules::go::init() {
   p6df::modules::go::goenv::init "$P6_DFZ_SRC_DIR"
 
   p6df::modules::go::prompt::init
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::go::goenv::init(dir)
+#
+#  Args:
+#	dir -
+#
+#  Environment:	 GOENV_ROOT GOPATH HAS_GOENV P6_DFZ_LANGS_DISABLE
+#>
+######################################################################
+p6df::modules::go::goenv::init() {
+  local dir="$1"
+
+  local GOENV_ROOT=$dir/syndbg/goenv
+  if p6_string_blank "$P6_DFZ_LANGS_DISABLE" && p6_file_executable "$GOENV_ROOT/bin/goenv"; then
+    p6_env_export GOENV_ROOT "$GOENV_ROOT"
+    p6_env_export HAS_GOENV 1
+
+    p6_path_if $GOENV_ROOT/bin
+    eval "$(goenv init - zsh)"
+    p6_path_if $GOPATH/bin
+  fi
+
+  p6_return_void
 }
 
 ######################################################################
@@ -91,34 +127,6 @@ p6df::modules::go::prompt::init() {
   p6df::core::prompt::line::add "p6_lang_prompt_info"
   p6df::core::prompt::line::add "p6_lang_envs_prompt_info"
   p6df::core::prompt::lang::line::add go
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::go::goenv::init(dir)
-#
-#  Args:
-#	dir -
-#
-#  Environment:	 DISABLE_ENVS GOENV_ROOT GOPATH HAS_GOENV
-#>
-######################################################################
-p6df::modules::go::goenv::init() {
-  local dir="$1"
-
-  [ -n "$DISABLE_ENVS" ] && return
-
-  GOENV_ROOT=$dir/syndbg/goenv
-
-  if [ -x $GOENV_ROOT/bin/goenv ]; then
-    export GOENV_ROOT
-    export HAS_GOENV=1
-
-    p6_path_if $GOENV_ROOT/bin
-    eval "$(p6_run_code goenv init - zsh)"
-    p6_path_if $GOPATH/bin
-  fi
 }
 
 ######################################################################
