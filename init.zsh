@@ -59,16 +59,40 @@ p6df::modules::go::langs() {
   p6_run_dir "$P6_DFZ_SRC_DIR/syndbg/goenv" "p6_git_p6_pull"
 
   # nuke the old one
-  local previous=$(goenv install -l | tail -2 | head -1 | sed -e 's, *,,g')
+  local previous=$(p6df::modules::go::goenv::latest::installed)
   goenv uninstall -f $previous
 
   # get the shiny one
-  local latest=$(goenv install -l | grep 1.18 | tail -1 | sed -e 's, *,,g')
+  local latest=$(p6df::modules::go::goenv::latest)
   goenv install $latest
   goenv global $latest
   goenv rehash
 
   p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::go::goenv::latest()
+#
+#>
+######################################################################
+p6df::modules::go::goenv::latest() {
+
+  goenv install -l | p6_filter_select "1.18" | p6_filter_last "1" | p6_filter_spaces_strip
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::go::goenv::latest::installed()
+#
+#>
+######################################################################
+p6df::modules::go::goenv::latest::installed() {
+
+  goenv install -l | p6_filter_from_end "2" | p6_filter_spaces_strip
 }
 
 ######################################################################
@@ -81,9 +105,7 @@ p6df::modules::go::langs() {
 ######################################################################
 p6df::modules::go::init() {
 
-  p6df::modules::go::goenv::init "$P6_DFZ_SRC_DIR"
-
-  p6df::modules::go::prompt::init
+  p6df::core::lang::mgr::init "$P6_DFZ_SRC_DIR/syndbg/goenv" "go"
 
   p6_return_void
 }
@@ -91,48 +113,7 @@ p6df::modules::go::init() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::go::goenv::init(dir)
-#
-#  Args:
-#	dir -
-#
-#  Environment:	 GOENV_ROOT GOPATH HAS_GOENV P6_DFZ_LANGS_DISABLE
-#>
-######################################################################
-p6df::modules::go::goenv::init() {
-  local dir="$1"
-
-  local GOENV_ROOT=$dir/syndbg/goenv
-  if p6_string_blank "$P6_DFZ_LANGS_DISABLE" && p6_file_executable "$GOENV_ROOT/bin/goenv"; then
-    p6_env_export GOENV_ROOT "$GOENV_ROOT"
-    p6_env_export HAS_GOENV 1
-
-    p6_path_if $GOENV_ROOT/bin
-    eval "$(goenv init - zsh)"
-    p6_path_if $GOPATH/bin
-  fi
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::go::prompt::init()
-#
-#>
-######################################################################
-p6df::modules::go::prompt::init() {
-
-  p6df::core::prompt::line::add "p6_lang_prompt_info"
-  p6df::core::prompt::line::add "p6_lang_envs_prompt_info"
-  p6df::core::prompt::lang::line::add go
-}
-
-######################################################################
-#<
-#
-# Function: str str = p6_go_env_prompt_info()
+# Function: str str = p6df::modules::go::env::prompt::info()
 #
 #  Returns:
 #	str - str
@@ -140,7 +121,7 @@ p6df::modules::go::prompt::init() {
 #  Environment:	 GOENV_ROOT GOPATH GOROOT
 #>
 ######################################################################
-p6_go_env_prompt_info() {
+p6df::modules::go::env::prompt::info() {
 
   local str
   str="goenv_root:\t  $GOENV_ROOT
