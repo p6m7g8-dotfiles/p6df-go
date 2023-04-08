@@ -50,6 +50,10 @@
 - p6df::modules::go::home::symlink()
 - p6df::modules::go::init()
 - p6df::modules::go::langs()
+- p6df::modules::go::langs::install()
+- p6df::modules::go::langs::nuke()
+- p6df::modules::go::langs::packages()
+- p6df::modules::go::langs::pull()
 - p6df::modules::go::vscodes()
 - str str = p6df::modules::go::env::prompt::info()
 
