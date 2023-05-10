@@ -192,8 +192,7 @@ p6df::modules::go::env::prompt::info() {
   local str
   str="goenv_root:\t  $GOENV_ROOT
 gopath:\t\t  $GOPATH
-goroot:\t\t  $GOROOT
-go111modules: $GO111MODULES"
+goroot:\t\t  $GOROOT"
 
   p6_return_str "$str"
 }
