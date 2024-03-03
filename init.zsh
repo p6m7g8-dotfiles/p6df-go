@@ -23,7 +23,7 @@ p6df::modules::go::deps() {
 p6df::modules::go::vscodes() {
 
   # go
-  got install golang.org/x/tools/gopls@latest
+  go install golang.org/x/tools/gopls@latest
   code --install-extension golang.go
 
   p6_return_void
@@ -182,7 +182,7 @@ p6df::modules::go::init() {
 #  Returns:
 #	str - str
 #
-#  Environment:	 GO111MODULES GOENV_ROOT GOPATH GOROOT
+#  Environment:	 GOENV_ROOT GOPATH GOROOT
 #>
 ######################################################################
 p6df::modules::go::env::prompt::info() {
