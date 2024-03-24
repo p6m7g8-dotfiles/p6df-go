@@ -10,8 +10,7 @@
   - [Summary](#summary)
   - [Contributing](#contributing)
   - [Code of Conduct](#code-of-conduct)
-  - [Changes](#changes)
-    - [Usage](#usage)
+  - [Usage](#usage)
   - [Author](#author)
 
 ### Badges
@@ -34,31 +33,50 @@
 
 - [Code of Conduct](https://github.com/p6m7g8/.github/blob/master/CODE_OF_CONDUCT.md)
 
-## Changes
-
-- [Change Log](CHANGELOG.md)
-
 ## Usage
+
+
+### Aliases
+
+
+### Functions
 
 ### p6df-go:
 
 #### p6df-go/init.zsh:
 
 - p6df::modules::go::deps()
-- p6df::modules::go::goenv::latest()
-- p6df::modules::go::goenv::latest::installed()
 - p6df::modules::go::home::symlink()
-- p6df::modules::go::init()
+- p6df::modules::go::init(_module, dir)
 - p6df::modules::go::langs()
-- p6df::modules::go::langs::install()
-- p6df::modules::go::langs::nuke()
-- p6df::modules::go::langs::packages()
-- p6df::modules::go::langs::pull()
 - p6df::modules::go::vscodes()
 - str str = p6df::modules::go::env::prompt::info()
 
 
+### p6df-go/lib:
 
+#### p6df-go/lib/env.sh:
+
+- p6df::modules::go::goenv::latest()
+- p6df::modules::go::goenv::latest::installed()
+
+#### p6df-go/lib/langs.sh:
+
+- p6df::modules::go::langs::install()
+- p6df::modules::go::langs::nuke()
+- p6df::modules::go::langs::packages()
+- p6df::modules::go::langs::pull()
+
+
+
+## Hier
+```text
+.
+├── env.sh
+└── langs.sh
+
+1 directory, 2 files
+```
 ## Author
 
 Philip M . Gollucci <pgollucci@p6m7g8.com>
