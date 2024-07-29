@@ -79,6 +79,8 @@ p6df::modules::go::init() {
   local _module="$1"
   local dir="$2"
 
+  p6_bootstrap "$dir"
+
   p6df::core::lang::mgr::init "$P6_DFZ_SRC_DIR/syndbg/goenv" "go"
 
   p6_return_void
