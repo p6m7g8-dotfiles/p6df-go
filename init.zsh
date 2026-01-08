@@ -43,6 +43,8 @@ p6df::modules::go::home::symlink() {
     p6_file_symlink "$P6_DFZ_SRC_DIR" "$GOPATH/src"
   fi
 
+  p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-go/share/.goenvrc" ".goenvrc"
+
   p6_return_void
 }
 
