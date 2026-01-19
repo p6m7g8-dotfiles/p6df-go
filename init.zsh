@@ -131,6 +131,8 @@ p6df::modules::go::prompt::lang() {
     v=$(go version 2>/dev/null | awk '{print $3}' | sed -e 's,^go,,')
     if p6_string_blank "$v"; then
       ver_sys="sys:no"
+    else
+      ver_sys="sys@$v"
     fi
     ver="$ver_sys"
   else
