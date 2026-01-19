@@ -115,7 +115,10 @@ p6df::modules::go::prompt::env() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::go::prompt::lang()
+# Function: str str = p6df::modules::go::prompt::lang()
+#
+#  Returns:
+#	str - str
 #
 #>
 ######################################################################
