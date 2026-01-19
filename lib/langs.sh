@@ -25,7 +25,7 @@ p6df::modules::go::langs::nuke() {
 
   # nuke the old one
   local previous=$(p6df::modules::go::goenv::latest::installed)
-  goenv uninstall -f $previous"
+  goenv uninstall -f "$previous"
 
   p6_return_void
 }
