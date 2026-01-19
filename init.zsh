@@ -121,25 +121,11 @@ p6df::modules::go::prompt::env() {
 ######################################################################
 p6df::modules::go::prompt::lang() {
 
-  local ver
+  local str
+  str=$(p6df::core::lang::prompt::lang \
+    "go" \
+    "goenv version-name 2>/dev/null" \
+    "go version | awk '{print $3}' | sed -e 's,^go,,'")
 
-  local ver_mgr
-  ver_mgr=$(goenv version-name 2>/dev/null)
-  if p6_string_eq "$ver_mgr" "system"; then
-    local ver_sys="sys@"
-    local v
-    v=$(go version 2>/dev/null | awk '{print $3}' | sed -e 's,^go,,')
-    if p6_string_blank "$v"; then
-      ver_sys="sys:no"
-    else
-      ver_sys="sys@$v"
-    fi
-    ver="$ver_sys"
-  else
-    ver="$ver_mgr"
-  fi
-
-  local str="go:$ver"
-
-  p6_return "$str"
+  p6_return_str "$str"
 }
