@@ -5,8 +5,6 @@
 ## Badges
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Mergify](https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges//p6df-go/&style=flat)](https://mergify.io)
-[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](<https://gitpod.io/#https://github.com//p6df-go>)
 
 ## Summary
 
@@ -32,8 +30,9 @@
 - p6df::modules::go::home::symlink()
 - p6df::modules::go::init(_module, dir)
 - p6df::modules::go::langs()
+- p6df::modules::go::prompt::lang()
 - p6df::modules::go::vscodes()
-- str str = p6df::modules::go::env::prompt::info()
+- str str = p6df::modules::go::prompt::env()
 
 ## p6df-go/lib
 
@@ -57,9 +56,10 @@
 ├── lib
 │   ├── env.sh
 │   └── langs.sh
-└── README.md
+├── README.md
+└── share
 
-2 directories, 4 files
+3 directories, 4 files
 ```
 
 ## Author
