@@ -25,7 +25,7 @@ p6df::modules::go::langs::nuke() {
 
   # nuke the old one
   local previous=$(p6df::modules::go::goenv::latest::installed)
-  goenv uninstall -f $previous
+  goenv uninstall -f "$previous"
 
   p6_return_void
 }
@@ -41,8 +41,8 @@ p6df::modules::go::langs::install() {
 
   # get the shiny one
   local latest=$(p6df::modules::go::goenv::latest)
-  goenv install $latest
-  goenv global $latest
+  goenv install "$latest"
+  goenv global "$latest"
   goenv rehash
 
   p6_return_void

@@ -34,7 +34,7 @@ p6df::modules::go::vscodes() {
 #
 # Function: p6df::modules::go::home::symlink()
 #
-#  Environment:	 GOPATH P6_DFZ_SRC_DIR
+#  Environment:	 GOPATH P6_DFZ_SRC_DIR P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
 #>
 ######################################################################
 p6df::modules::go::home::symlink() {
@@ -91,22 +91,55 @@ p6df::modules::go::init() {
 ######################################################################
 #<
 #
-# Function: str str = p6df::modules::go::env::prompt::info()
+# Function: str str = p6df::modules::go::prompt::env()
 #
 #  Returns:
 #	str - str
 #
-#  Environment:	 GOENV_ROOT GOPATH GOROOT
+#  Environment:	 GOPATH
 #>
 ######################################################################
-p6df::modules::go::env::prompt::info() {
+p6df::modules::go::prompt::env() {
 
   # https://maelvls.dev/go111module-everywhere/
 
-  local str
-  str="goenv_root:\t  $GOENV_ROOT
-gopath:\t\t  $GOPATH
-goroot:\t\t  $GOROOT"
+#  local str
+#  str="goenv_root:\t  $GOENV_ROOT
+#  goroot:\t\t  $GOROOT"
+
+   local str="gopath:\t\t  $GOPATH"
 
   p6_return_str "$str"
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::go::prompt::lang()
+#
+#>
+######################################################################
+p6df::modules::go::prompt::lang() {
+
+  local ver
+
+  local ver_mgr
+  ver_mgr=$(goenv version-name 2>/dev/null)
+  if p6_string_eq "$ver_mgr" "system"; then
+    local ver_sys="sys@"
+    local v
+    v=$(go version 2>/dev/null | awk '{print $3}' | sed -e 's,^go,,')
+    if p6_string_blank "$v"; then
+      ver_sys="sys:no"
+    else
+      ver_sys="sys@$v"
+    fi
+    ver="$ver_sys"
+  else
+    ver="$ver_mgr"
+  fi
+
+  local str="go:$ver"
+
+  p6_return "$str"
 }
