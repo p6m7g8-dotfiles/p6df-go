@@ -128,7 +128,7 @@ p6df::modules::go::prompt::lang() {
   str=$(p6df::core::lang::prompt::lang \
     "go" \
     "goenv version-name 2>/dev/null" \
-    "go version | awk '{print $3}' | sed -e 's,^go,,'")
+    "go version | p6_filter_column_pluck 3 | p6_filter_strip_leading_go")
 
   p6_return_str "$str"
 }
