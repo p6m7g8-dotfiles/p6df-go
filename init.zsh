@@ -24,7 +24,41 @@ p6df::modules::go::vscodes() {
 
   # go
   go install golang.org/x/tools/gopls@latest
-  code --install-extension golang.go
+  p6df::modules::vscode::extension::install golang.go
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: str json = p6df::modules::go::vscodes::config()
+#
+#  Returns:
+#	str - json
+#
+#>
+######################################################################
+p6df::modules::go::vscodes::config() {
+
+  cat <<'EOF'
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "go.formatTool": "goimports",
+  "go.installDependenciesWhenBuilding": false,
+  "go.lintOnSave": "workspace",
+  "go.lintTool": "staticcheck",
+  "go.toolsManagement.autoUpdate": true,
+  "go.useLanguageServer": true,
+  "go.vetOnSave": "workspace",
+  "editor.codeActionsOnSave": {
+    "go.generateTests": "always",
+    "go.test": "always",
+    "go.build": "always",
+    "go.vet": "always"
+  }
+EOF
 
   p6_return_void
 }
