@@ -73,7 +73,7 @@ EOF
 ######################################################################
 p6df::modules::go::home::symlink() {
 
-  if ! p6_string_blank "$GOPATH"; then
+  if p6_string_blank_NOT "$GOPATH"; then
     p6_file_symlink "$P6_DFZ_SRC_DIR" "$GOPATH/src"
   fi
 
