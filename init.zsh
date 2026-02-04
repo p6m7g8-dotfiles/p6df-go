@@ -32,10 +32,7 @@ p6df::modules::go::vscodes() {
 ######################################################################
 #<
 #
-# Function: str json = p6df::modules::go::vscodes::config()
-#
-#  Returns:
-#	str - json
+# Function: p6df::modules::go::vscodes::config()
 #
 #>
 ######################################################################
