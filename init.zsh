@@ -42,19 +42,19 @@ p6df::modules::go::vscodes::config() {
   "[go]": {
     "editor.defaultFormatter": "golang.go"
   },
+  "editor.codeActionsOnSave": {
+    "go.generateTests": "always",
+    "go.test": "always",
+    "go.build": "always",
+    "go.vet": "always"
+  },
   "go.formatTool": "goimports",
   "go.installDependenciesWhenBuilding": false,
   "go.lintOnSave": "workspace",
   "go.lintTool": "staticcheck",
   "go.toolsManagement.autoUpdate": true,
   "go.useLanguageServer": true,
-  "go.vetOnSave": "workspace",
-  "editor.codeActionsOnSave": {
-    "go.generateTests": "always",
-    "go.test": "always",
-    "go.build": "always",
-    "go.vet": "always"
-  }
+  "go.vetOnSave": "workspace"
 EOF
 
   p6_return_void
