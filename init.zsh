@@ -10,6 +10,8 @@ p6df::modules::go::deps() {
   ModuleDeps=(
     p6m7g8-dotfiles/p6common
     syndbg/goenv
+    smallnest/goskills
+    rohitg00/awesome-claude-code-toolkit:agents/language-experts/golang-developer.md
   )
 }
 
@@ -137,8 +139,9 @@ p6df::modules::go::prompt::env() {
 #  local str
 #  str="goenv_root:\t  $GOENV_ROOT
 #  goroot:\t\t  $GOROOT"
+#   local str="gopath:\t\t  $GOPATH"
 
-   local str="gopath:\t\t  $GOPATH"
+  local str=""
 
   p6_return_str "$str"
 }
