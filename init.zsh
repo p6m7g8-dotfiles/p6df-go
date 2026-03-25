@@ -84,6 +84,21 @@ p6df::modules::go::home::symlink() {
 ######################################################################
 #<
 #
+# Function: p6df::modules::go::home::symlinks()
+#
+#  Environment:	 HOME P6_DFZ_SRC_DIR
+#>
+######################################################################
+p6df::modules::go::home::symlinks() {
+
+  p6_file_symlink "$P6_DFZ_SRC_DIR/smallnest/goskills"  "$HOME/.claude/skills/goskills"
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
 # Function: p6df::modules::go::langs()
 #
 #>
