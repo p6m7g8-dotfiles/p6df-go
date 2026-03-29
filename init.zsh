@@ -65,31 +65,14 @@ EOF
 ######################################################################
 #<
 #
-# Function: p6df::modules::go::home::symlink()
-#
-#  Environment:	 GOPATH P6_DFZ_SRC_DIR P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
-#>
-######################################################################
-p6df::modules::go::home::symlink() {
-
-  if p6_string_blank_NOT "$GOPATH"; then
-    p6_file_symlink "$P6_DFZ_SRC_DIR" "$GOPATH/src"
-  fi
-
-  p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-go/share/.goenvrc" "$HOME/.goenvrc"
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
 # Function: p6df::modules::go::home::symlinks()
 #
-#  Environment:	 HOME P6_DFZ_SRC_DIR
+#  Environment:	 HOME P6_DFZ_SRC_DIR P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
 #>
 ######################################################################
 p6df::modules::go::home::symlinks() {
+
+  p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-go/share/.goenvrc" "$HOME/.goenvrc"
 
   p6_file_symlink "$P6_DFZ_SRC_DIR/smallnest/goskills"  "$HOME/.claude/skills/goskills"
 
