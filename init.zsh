@@ -149,5 +149,5 @@ p6df::modules::go::prompt::lang() {
 ######################################################################
 p6df::modules::go::prompt::env() {
 
-  p6_return_words 'go' "$GOPATH"
+  p6_return_words 'go' '$GOPATH'
 }
