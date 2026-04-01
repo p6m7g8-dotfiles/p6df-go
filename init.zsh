@@ -67,7 +67,7 @@ EOF
 #
 # Function: p6df::modules::go::home::symlinks()
 #
-#  Environment:	 HOME GOPATH P6_DFZ_SRC_DIR P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
+#  Environment:	 GOPATH HOME P6_DFZ_SRC_DIR P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
 #>
 ######################################################################
 p6df::modules::go::home::symlinks() {
@@ -103,49 +103,16 @@ p6df::modules::go::langs() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::go::init(_module, dir)
-#
-#  Args:
-#	_module -
-#	dir -
+# Function: p6df::modules::go::langmgr::init()
 #
 #  Environment:	 P6_DFZ_SRC_DIR
 #>
 ######################################################################
-p6df::modules::go::init() {
-  local _module="$1"
-  local dir="$2"
-
-  p6_bootstrap "$dir"
+p6df::modules::go::langmgr::init() {
 
   p6df::core::lang::mgr::init "$P6_DFZ_SRC_DIR/syndbg/goenv" "go"
 
   p6_return_void
-}
-
-######################################################################
-#<
-#
-# Function: str str = p6df::modules::go::prompt::env()
-#
-#  Returns:
-#	str - str
-#
-#  Environment:	 GOPATH
-#>
-######################################################################
-p6df::modules::go::prompt::env() {
-
-  # https://maelvls.dev/go111module-everywhere/
-
-#  local str
-#  str="goenv_root:\t  $GOENV_ROOT
-#  goroot:\t\t  $GOROOT"
-#   local str="gopath:\t\t  $GOPATH"
-
-  local str=""
-
-  p6_return_str "$str"
 }
 
 ######################################################################
@@ -167,4 +134,20 @@ p6df::modules::go::prompt::lang() {
     "go version | p6_filter_column_pluck 3 | p6_filter_strip_leading_go")
 
   p6_return_str "$str"
+}
+
+######################################################################
+#<
+#
+# Function: words go $GOPATH = p6df::modules::go::prompt::env()
+#
+#  Returns:
+#	words - go $GOPATH
+#
+#  Environment:	 GOPATH
+#>
+######################################################################
+p6df::modules::go::prompt::env() {
+
+  p6_return_words 'go' '$GOPATH'
 }
