@@ -18,46 +18,14 @@ p6df::modules::go::deps() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::go::vscodes()
+# Function: p6df::modules::go::langmgr::init()
 #
+#  Environment:	 P6_DFZ_SRC_DIR
 #>
 ######################################################################
-p6df::modules::go::vscodes() {
+p6df::modules::go::langmgr::init() {
 
-  # go
-  go install golang.org/x/tools/gopls@latest
-  p6df::modules::vscode::extension::install golang.go
-
-  p6_return_void
-}
-
-######################################################################
-#<
-#
-# Function: p6df::modules::go::vscodes::config()
-#
-#>
-######################################################################
-p6df::modules::go::vscodes::config() {
-
-  cat <<'EOF'
-  "[go]": {
-    "editor.defaultFormatter": "golang.go"
-  },
-  "editor.codeActionsOnSave": {
-    "go.generateTests": "always",
-    "go.test": "always",
-    "go.build": "always",
-    "go.vet": "always"
-  },
-  "go.formatTool": "goimports",
-  "go.installDependenciesWhenBuilding": false,
-  "go.lintOnSave": "workspace",
-  "go.lintTool": "staticcheck",
-  "go.toolsManagement.autoUpdate": true,
-  "go.useLanguageServer": true,
-  "go.vetOnSave": "workspace"
-EOF
+  p6df::core::lang::mgr::init "$P6_DFZ_SRC_DIR/syndbg/goenv" "go"
 
   p6_return_void
 }
@@ -103,14 +71,46 @@ p6df::modules::go::langs() {
 ######################################################################
 #<
 #
-# Function: p6df::modules::go::langmgr::init()
+# Function: p6df::modules::go::vscodes()
 #
-#  Environment:	 P6_DFZ_SRC_DIR
 #>
 ######################################################################
-p6df::modules::go::langmgr::init() {
+p6df::modules::go::vscodes() {
 
-  p6df::core::lang::mgr::init "$P6_DFZ_SRC_DIR/syndbg/goenv" "go"
+  # go
+  go install golang.org/x/tools/gopls@latest
+  p6df::modules::vscode::extension::install golang.go
+
+  p6_return_void
+}
+
+######################################################################
+#<
+#
+# Function: p6df::modules::go::vscodes::config()
+#
+#>
+######################################################################
+p6df::modules::go::vscodes::config() {
+
+  cat <<'EOF'
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "editor.codeActionsOnSave": {
+    "go.generateTests": "always",
+    "go.test": "always",
+    "go.build": "always",
+    "go.vet": "always"
+  },
+  "go.formatTool": "goimports",
+  "go.installDependenciesWhenBuilding": false,
+  "go.lintOnSave": "workspace",
+  "go.lintTool": "staticcheck",
+  "go.toolsManagement.autoUpdate": true,
+  "go.useLanguageServer": true,
+  "go.vetOnSave": "workspace"
+EOF
 
   p6_return_void
 }
