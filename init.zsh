@@ -1,5 +1,11 @@
 # shellcheck shell=bash
 ######################################################################
+#<
+#
+# Function: p6df::modules::go::deps()
+#
+#>
+######################################################################
 p6df::modules::go::deps() {
   ModuleDeps=(
     p6m7g8-dotfiles/p6common
@@ -10,6 +16,13 @@ p6df::modules::go::deps() {
 }
 
 ######################################################################
+#<
+#
+# Function: p6df::modules::go::langmgr::init()
+#
+#  Environment:	 P6_DFZ_SRC_DIR
+#>
+######################################################################
 p6df::modules::go::langmgr::init() {
 
   p6df::core::lang::mgr::init "$P6_DFZ_SRC_DIR/syndbg/goenv" "go"
@@ -17,6 +30,13 @@ p6df::modules::go::langmgr::init() {
   p6_return_void
 }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::go::home::symlinks()
+#
+#  Environment:	 GOPATH HOME P6_DFZ_SRC_DIR P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
+#>
 ######################################################################
 p6df::modules::go::home::symlinks() {
 
@@ -32,6 +52,12 @@ p6df::modules::go::home::symlinks() {
 }
 
 ######################################################################
+#<
+#
+# Function: p6df::modules::go::langs()
+#
+#>
+######################################################################
 p6df::modules::go::langs() {
 
   p6df::modules::go::langs::pull
@@ -43,6 +69,12 @@ p6df::modules::go::langs() {
 }
 
 ######################################################################
+#<
+#
+# Function: p6df::modules::go::vscodes()
+#
+#>
+######################################################################
 p6df::modules::go::vscodes() {
 
   # go
@@ -52,6 +84,12 @@ p6df::modules::go::vscodes() {
   p6_return_void
 }
 
+######################################################################
+#<
+#
+# Function: p6df::modules::go::vscodes::config()
+#
+#>
 ######################################################################
 p6df::modules::go::vscodes::config() {
 
@@ -77,44 +115,6 @@ EOF
   p6_return_void
 }
 
-######################################################################
-#<
-#
-# Function: p6df::modules::go::deps()
-#
-#>
-######################################################################
-#<
-#
-# Function: p6df::modules::go::vscodes()
-#
-#>
-######################################################################
-#<
-#
-# Function: p6df::modules::go::vscodes::config()
-#
-#>
-######################################################################
-#<
-#
-# Function: p6df::modules::go::home::symlinks()
-#
-#  Environment:	 GOPATH HOME P6_DFZ_SRC_DIR P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
-#>
-######################################################################
-#<
-#
-# Function: p6df::modules::go::langs()
-#
-#>
-######################################################################
-#<
-#
-# Function: p6df::modules::go::langmgr::init()
-#
-#  Environment:	 P6_DFZ_SRC_DIR
-#>
 ######################################################################
 #<
 #
