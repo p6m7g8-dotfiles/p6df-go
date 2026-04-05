@@ -1,11 +1,5 @@
 # shellcheck shell=bash
 ######################################################################
-#<
-#
-# Function: p6df::modules::go::deps()
-#
-#>
-######################################################################
 p6df::modules::go::deps() {
   ModuleDeps=(
     p6m7g8-dotfiles/p6common
@@ -16,11 +10,38 @@ p6df::modules::go::deps() {
 }
 
 ######################################################################
-#<
-#
-# Function: p6df::modules::go::vscodes()
-#
-#>
+p6df::modules::go::langmgr::init() {
+
+  p6df::core::lang::mgr::init "$P6_DFZ_SRC_DIR/syndbg/goenv" "go"
+
+  p6_return_void
+}
+
+######################################################################
+p6df::modules::go::home::symlinks() {
+
+  if p6_string_blank_NOT "$GOPATH"; then
+    p6_file_symlink "$P6_DFZ_SRC_DIR" "$GOPATH/src"
+  fi
+
+  p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-go/share/.goenvrc" "$HOME/.goenvrc"
+
+  p6_file_symlink "$P6_DFZ_SRC_DIR/smallnest/goskills"  "$HOME/.claude/skills/goskills"
+
+  p6_return_void
+}
+
+######################################################################
+p6df::modules::go::langs() {
+
+  p6df::modules::go::langs::pull
+  p6df::modules::go::langs::nuke
+  p6df::modules::go::langs::install
+  p6df::modules::go::langs::packages
+
+  p6_return_void
+}
+
 ######################################################################
 p6df::modules::go::vscodes() {
 
@@ -31,12 +52,6 @@ p6df::modules::go::vscodes() {
   p6_return_void
 }
 
-######################################################################
-#<
-#
-# Function: p6df::modules::go::vscodes::config()
-#
-#>
 ######################################################################
 p6df::modules::go::vscodes::config() {
 
@@ -65,24 +80,28 @@ EOF
 ######################################################################
 #<
 #
+# Function: p6df::modules::go::deps()
+#
+#>
+######################################################################
+#<
+#
+# Function: p6df::modules::go::vscodes()
+#
+#>
+######################################################################
+#<
+#
+# Function: p6df::modules::go::vscodes::config()
+#
+#>
+######################################################################
+#<
+#
 # Function: p6df::modules::go::home::symlinks()
 #
 #  Environment:	 GOPATH HOME P6_DFZ_SRC_DIR P6_DFZ_SRC_P6M7G8_DOTFILES_DIR
 #>
-######################################################################
-p6df::modules::go::home::symlinks() {
-
-  if p6_string_blank_NOT "$GOPATH"; then
-    p6_file_symlink "$P6_DFZ_SRC_DIR" "$GOPATH/src"
-  fi
-
-  p6_file_symlink "$P6_DFZ_SRC_P6M7G8_DOTFILES_DIR/p6df-go/share/.goenvrc" "$HOME/.goenvrc"
-
-  p6_file_symlink "$P6_DFZ_SRC_DIR/smallnest/goskills"  "$HOME/.claude/skills/goskills"
-
-  p6_return_void
-}
-
 ######################################################################
 #<
 #
@@ -90,31 +109,12 @@ p6df::modules::go::home::symlinks() {
 #
 #>
 ######################################################################
-p6df::modules::go::langs() {
-
-  p6df::modules::go::langs::pull
-  p6df::modules::go::langs::nuke
-  p6df::modules::go::langs::install
-  p6df::modules::go::langs::packages
-
-  p6_return_void
-}
-
-######################################################################
 #<
 #
 # Function: p6df::modules::go::langmgr::init()
 #
 #  Environment:	 P6_DFZ_SRC_DIR
 #>
-######################################################################
-p6df::modules::go::langmgr::init() {
-
-  p6df::core::lang::mgr::init "$P6_DFZ_SRC_DIR/syndbg/goenv" "go"
-
-  p6_return_void
-}
-
 ######################################################################
 #<
 #
