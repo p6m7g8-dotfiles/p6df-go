@@ -36,16 +36,13 @@ TODO: Add a short summary of this module.
 ##### p6df-go/init.zsh
 
 - `p6df::modules::go::deps()`
-- `p6df::modules::go::home::symlink()`
-- `p6df::modules::go::init(_module, dir)`
-  - Args:
-    - _module -
-    - dir -
+- `p6df::modules::go::home::symlinks()`
+- `p6df::modules::go::langmgr::init()`
 - `p6df::modules::go::langs()`
 - `p6df::modules::go::vscodes()`
 - `p6df::modules::go::vscodes::config()`
-- `str str = p6df::modules::go::prompt::env()`
 - `str str = p6df::modules::go::prompt::lang()`
+- `words go = p6df::modules::go::prompt::env()`
 
 #### p6df-go/lib
 

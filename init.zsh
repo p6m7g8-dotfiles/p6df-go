@@ -139,10 +139,10 @@ p6df::modules::go::prompt::lang() {
 ######################################################################
 #<
 #
-# Function: words go $GOPATH = p6df::modules::go::prompt::env()
+# Function: words go = p6df::modules::go::prompt::env()
 #
 #  Returns:
-#	words - go $GOPATH
+#	words - go
 #
 #  Environment:	 GOPATH
 #>
